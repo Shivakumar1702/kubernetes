@@ -16,3 +16,5 @@ member/slave contains the below components
 2. kube proxy - this helps in inter node communication.
 
 kube-config file for authentiation and talking with api-server.
+kubectl talks to api-server, all the authentication and the details of the api-server are stored in kube-config file.
+
