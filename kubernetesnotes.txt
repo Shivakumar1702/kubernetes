@@ -1,0 +1,95 @@
+components of kubernetes -
+All the above components are present on the control plane/leader node.
+1. api server
+    - when api server gets the request to create a pod the data reg the same is stored in etcd server.
+    - once the data is saved etcd server sends response to api server.
+2. controller manager
+    - controller manager tries to manage the the request to api server to the cluster status/ controller maintains the state.
+    - deployments, statefulsets, replicasets are a part of controller manager.
+3. scheduler
+    - scheduler decides on which particular node to schedule the pod on. based on affinity and node resources.
+4. etcd server
+    - etcd is a key-value store
+
+member/slave contains the below components
+1. kubelet - kubelet waits for the incoming request to its node and talks with container engine on the node to schedule the pod.
+2. kube proxy - this helps in inter node communication.
+
+kube-config file for authentiation and talking with api-server.
+kubectl talks to api-server, all the authentication and the details of the api-server are stored in kube-config file.
+
+kubectl runs api calls on api-server by locating the api-server by kube-config file.
+api-server exposes end points which kubectl uses.
+kube-config file contains the api-server details to which kubectl talks
+
+kind - pod, statefulset, deployment
+apigroup - similar kind of ojects like storage, networking etc
+version - apigroup is in version
+
+gvk - group version kind
+gvr - group version resource
+with the above two any resource can be targetted.
+
+api-server contains all the apis, these apis get, set the k8s objects.
+
+kubectl proxy
+curl <exposed url>
+curl <exposed url>/api/v1/namespaces/kube-system/pods
+
+**********************************
+Docker - container platform. Docker helps to interact with the container.
+Kubernetes - container orchestration platform.
+containers are ephimeral(die & revive)
+
+shortcomings of docker:
+	Single host to schedule the containers(container can be scheduled on only one host)
+	Autohealing - without manual intervention any container which got killed should come up.
+	Autoscaling - when the load on the container is maximum, the no of container instances should increase
+				  to accomodate the load.
+	docker alone is a simple platform which is not enterprise ready, it does not have scaling, healing,
+	load balancer, API gateway support, firewall out of the box.
+	
+Kubernetes solves the above problems as it supports Autohealing, Autoscaling, Multi host setup and Enterprise 
+level support.
+Multi host setup - Kubernetes is by default a cluster setup. which contains master and worker nodes.
+Autoscaling - Replication controller manages the auto scaling either from yml configuration or HPA(horizontal pod
+				autoscaler)
+Autohealing - whenever any pod goes down kubernetes spins up a new pod even before the other one completely
+			  went down, API server is used for this process.
+Kubernetes is an enterprise level application.
+
+To start a minikube cluster:
+	minikube start --driver=docker
+To delete a minikube:
+	minikube delete
+	
+Kubernetes Architecture:
+Kubernetes contains master plane and data plane(worker nodes)
+master plane contains etcd server, Controller manager, scheduler, API server, cloud controller manager.
+data plane contains kubelet and kube-proxy.
+
+Data plane:
+kubelet - Request to create a pod goes through the master plane to data plane, kubelet in the dataplane is responsible
+for creating the pod and the pod needs a container runtime which is provided by dockershim or containerd or cri-o.
+kube-proxy - this provides ip address for pods, networking and default load balancing capabilities for 
+the pods in the cluster.
+Container Runtime - Pod needs container runtime to run, this can be dockershim, cri-o, containerd runtime.
+
+Control plane:
+API Server: API Server receives the input to create from the user decides which node to create the resouce on.
+Scheduler: Scheduler takes the input from the API Server and send message to create the pod on the suggested node.
+etcd: It stores all the information regarding the cluster in key value pairs.
+controller manager: controller manager maintains the state of the pods like managing the replica sets.
+cloud controller manager: for an cloud kubernetes service like gke, aks, eks. for the cluster to communicate with
+the cloud services CCM is used.
+
+why are we deploying pod on Kubernetes not container?
+Pod.yml file contains all the specifications we need on a container. Instead of passing the commands in CLI
+we create a pod file which contains the container and all the specs we need for it.
+pod is one or more containers.
+
+
+
+
+
+
