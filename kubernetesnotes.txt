@@ -88,6 +88,16 @@ Pod.yml file contains all the specifications we need on a container. Instead of 
 we create a pod file which contains the container and all the specs we need for it.
 pod is one or more containers.
 
+container vs pod vs deployment
+container is a running application with the dependencies.
+pod is a single or multiple containers along with the runnning specification.
+deployment also deploys a pod but will provide the capabilities like Autoscaling, Autohealing and zero downtime capabilities.
+deployment --> replicaset(controller) --> pods
+
+deployment vs replicaset
+deployment also deploys a pod but will provide the capabilities like Autoscaling, Autohealing and zero downtime capabilities.
+replicaset is a kubernetes controller which maintains the state of the deployment.
+
 
 
 
