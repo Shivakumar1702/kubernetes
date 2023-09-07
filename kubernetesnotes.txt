@@ -98,10 +98,19 @@ deployment vs replicaset
 deployment also deploys a pod but will provide the capabilities like Autoscaling, Autohealing and zero downtime capabilities.
 replicaset is a kubernetes controller which maintains the state of the deployment.
 
-services
+services:
 In prod scenario every deployment have a service.
 Service can do loadbalancing, service discovery, expose application to external world.
 Service are of 3 types:
 	clusterIp --> still application is only accessible inside the cluster.
 	nodeport --> allows the application to accessible out of the cluster by using the ip of the worker IP.
 	loadbalancer --> application can be accessible in the external world with the public load balancer IP.
+
+Ingress:
+Services doesnot provide the enterprise level loadbalancing &
+loadbalancer Service exposes public IP, it is not ecomical when an application have multiple services.
+In Ingress user have to create Ingress resource, and the loadbalancing provider should create the Ingress
+controller. loadbalancing providers are nginx, HAproxy, F5 etc.
+User have to install Ingress controller on the kubernetes cluster. then Ingress resouce should be created.
+Traffic flow with Ingress:
+request --> Ingress controller --> Ingress resouce --> service --> pods
