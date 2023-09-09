@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+  labels:
+    name: myingress
+spec:
+  rules:
+  - host: myapp.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/tomcat"
+        backend:
+          service:
+            name: tomcat-service
+            port: 
+              number: 8080
+
+      - pathType: Prefix
+        path: "/nginx"
+        backend:
+          service:
+            name: nginx-service
+            port: 
+              number: 80

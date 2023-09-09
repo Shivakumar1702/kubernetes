@@ -114,3 +114,13 @@ controller. loadbalancing providers are nginx, HAproxy, F5 etc.
 User have to install Ingress controller on the kubernetes cluster. then Ingress resouce should be created.
 Traffic flow with Ingress:
 request --> Ingress controller --> Ingress resouce --> service --> pods
+Ingress routing is of two types:
+host based, path based
+host based is like host: app1.myweb.com and app2.myweb.com
+path based is like host: myweb.com path: /app1 and path: /app2
+
+Ingress can take care of TLS:
+there are three kinds of TLS:
+SSL passthrough - request of https type pass through loadbalancer and the request is decrypted at service. 
+SSL Offloading - request of https tpes pass through loadbalancer and get decrypted to http and this http flows to the service.
+SSL Bridging - http requests coming to the LB will get decrypted and again re-encrypted and sent to the service.
