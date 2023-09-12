@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap1
+data:
+  name: "shivakumarallam"
+  age: "30"
+  something: |
+    enemy.types=aliens,monsters
+    player.maximum-lives=5

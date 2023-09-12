@@ -124,3 +124,10 @@ there are three kinds of TLS:
 SSL passthrough - request of https type pass through loadbalancer and the request is decrypted at service. 
 SSL Offloading - request of https tpes pass through loadbalancer and get decrypted to http and this http flows to the service.
 SSL Bridging - http requests coming to the LB will get decrypted and again re-encrypted and sent to the service.
+
+Config Maps and Secrets:
+Config Maps: kubernetes object to store non confidential data in key value pairs that can be passed to
+pods at runtime.
+configmaps can be attached to pods as environment variables or volume mounts.
+if attached through environment variables the varibles cannot be changed.
+when configmaps mounted as volume, the cms are available as files.
