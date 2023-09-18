@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-dep-vol
+spec:
+  selector:
+    matchLabels:
+      app: alpine-dep-vol
+  template:
+    metadata:
+      labels:
+        app: alpine-dep-vol
+    spec:
+      containers:
+      - name: alpine-dep-vol
+        image: alpine:3.14
+        command: ["sleep", "3600"]
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+
+        volumeMounts:
+        - name: configmap
+          mountPath: /tmp/map
+        - name: secret
+          mountPath: /tmp/sec
+      volumes:
+        - name: configmap
+          configMap:
+            name: configmap1
+        - name: secret
+          secret:
+            secretName: secret1

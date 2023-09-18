@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: alpine-deployment
+  template:
+    metadata:
+      labels:
+        app: alpine-deployment
+    spec:
+      containers:
+      - name: alpine-deployment
+        image: alpine:3.14
+        command: ["sleep", "3600"]
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        env:
+          - name: NAME1
+            valueFrom:
+              configMapKeyRef:
+                key: name
+                name: configmap1
+          - name: PROPS
+            valueFrom:
+              configMapKeyRef:
+                key: prop
+                name: configmap1
+          - name: USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: secret1
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: secret1
+        ports:
+        - containerPort: 80

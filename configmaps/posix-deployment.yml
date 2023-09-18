@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posix-deployment
+spec:
+  selector:
+    matchLabels:
+      app: posix-deployment
+  template:
+    metadata:
+      labels:
+        app: posix-deployment
+    spec:
+      containers:
+      - name: posix-deployment
+        image: alpine:3.14
+        command: ["sleep", "3600"]
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: configmap1

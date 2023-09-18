@@ -131,3 +131,11 @@ pods at runtime.
 configmaps can be attached to pods as environment variables or volume mounts.
 if attached through environment variables the varibles cannot be changed.
 when configmaps mounted as volume, the cms are available as files.
+
+RBAC:
+RBAC can be implemented for Users and Service Acounts.
+1. Users/Service Accounts
+2. Roles/ClusterRoles
+3. Rolebinding/ClusterRolebinding
+
+Kubernetes doesnot take care user management, it should be taken care by kubernetes service provider.

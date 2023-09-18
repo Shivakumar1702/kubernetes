@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap1
+data:
+  name: "shiva kumar"
+  age: "27"
+  class: "10th class"
+  ui_properties_file_name: "user-interface.properties"
+
+  # file-like keys   
+  user-interface.properties: |
+    color.good=purple
+    color.bad=yellow
+    allow.textmode=true 
