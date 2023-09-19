@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy-http
+spec:
+  selector:
+    matchLabels:
+      app: nginx-deploy-http
+  template:
+    metadata:
+      labels:
+        app: nginx-deploy-http
+    spec:
+      containers:
+      - name: nginx-deploy-http
+        image: nginx:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        ports:
+        - containerPort: 80

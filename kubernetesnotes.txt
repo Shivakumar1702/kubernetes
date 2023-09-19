@@ -139,3 +139,16 @@ RBAC can be implemented for Users and Service Acounts.
 3. Rolebinding/ClusterRolebinding
 
 Kubernetes doesnot take care user management, it should be taken care by kubernetes service provider.
+
+Resource Request - The amount of available cpu and memory on the node to schedule a pod. post 
+deployment pod can use more or less than the resource request, this is only used for scheduling.
+Requests are imposed at scheduling time.
+Resource Limit - The amount of memory or cpu that a pod is allowed to use on the node.
+Limits are imposed at runtime.
+Limit Value >>> Request Value
+
+Health Check:
+Liveness probe - helps to determine container state. can be checked by running command in container, periodic http health check.
+StartUp probe - StartUp probe runs during the container start time and stops once container started. once
+				StartUp probe ends Liveness probe starts.
+Readiness probe - this probe is to determine whether the pod is ready to accept the traffic.
