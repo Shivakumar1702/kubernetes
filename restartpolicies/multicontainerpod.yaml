@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multicontainer-pod
+  labels:
+    name: multicontainer-pod
+spec:
+  containers:
+  - name: nginx-pod
+    image: nginx:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: shared-data
+      mountPath: /usr/share/nginx/html
+    ports:
+      - containerPort: 80
+  - name: alpine-pod
+    image: alpine:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: shared-data
+      mountPath: /tmp
+    command:
+    - "/bin/sh"
+    - "-c"
+    - |
+      echo "hello this is from container alpine" >> /tmp/index.html
+
+  volumes:
+  - name: shared-data
+    emptyDir: {}
+

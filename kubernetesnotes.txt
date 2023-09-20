@@ -152,3 +152,10 @@ Liveness probe - helps to determine container state. can be checked by running c
 StartUp probe - StartUp probe runs during the container start time and stops once container started. once
 				StartUp probe ends Liveness probe starts.
 Readiness probe - this probe is to determine whether the pod is ready to accept the traffic.
+
+Container restart policies - Always, OnFailure, Never
+By default pod restart policy is Always even if pod exited successfully
+
+Init container:
+specialized containers that run in a pod before the app container.
+this only works during startup of the pod.
