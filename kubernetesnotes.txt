@@ -165,6 +165,7 @@ Pods can be scheduled on different nodes based on the following:
 2. nodeName -- using the node nodeName
 3. affinity -- enhanced version of nodeSelector
 4. anti-affinity -- when not to schedule pods on nodes, anti-affinity can be used.
+	(check scheduling folder for examples)
 
 DaemonSet -- To run a copy of a pod on each node created. whenever a new node created DaemonSet runs.
 StaticPod -- Static pod is managed by kubelet on nodes. control plane not required to run static pods.
