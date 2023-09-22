@@ -159,3 +159,15 @@ By default pod restart policy is Always even if pod exited successfully
 Init container:
 specialized containers that run in a pod before the app container.
 this only works during startup of the pod.
+
+Pods can be scheduled on different nodes based on the following:
+1. nodeSelector -- using labels
+2. nodeName -- using the node nodeName
+3. affinity -- enhanced version of nodeSelector
+4. anti-affinity -- when not to schedule pods on nodes, anti-affinity can be used.
+
+DaemonSet -- To run a copy of a pod on each node created. whenever a new node created DaemonSet runs.
+StaticPod -- Static pod is managed by kubelet on nodes. control plane not required to run static pods.
+			every static pod creates a mirror pod on the master plane to monitor but cannot be managed.
+
+--kubernetes.io/os=linux
