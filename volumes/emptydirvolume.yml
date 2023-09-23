@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: empty-dir-deployment
+spec:
+  selector:
+    matchLabels:
+      app: empty-dir-deployment
+  template:
+    metadata:
+      labels:
+        app: empty-dir-deployment
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: empty-vol
+          mountPath: /usr/share/nginx/html
+      - name: alpine-container
+        image: alpine:latest
+        resources:
+         limits:
+          memory: "128Mi"
+          cpu: "500m"
+        command:
+        - "/bin/sh"
+        - "-c"
+        - |
+          sleep 20
+          echo hello > /tmp/index.html
+          sleep 10
+        volumeMounts:
+        - name: empty-vol
+          mountPath: /tmp
+
+      volumes:
+      - name: empty-vol
+        emptyDir: {}  
+

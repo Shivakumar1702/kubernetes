@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-deployment
+spec:
+  selector:
+    matchLabels:
+      app: alpine-deployment
+  template:
+    metadata:
+      labels:
+        app: alpine-deployment
+    spec:
+      containers:
+      - name: alpine-deployment
+        image: alpine:3.14
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /tmp
+          name: my-vol
+        command:
+        - "/bin/sh"
+        - "-c"
+        - |
+          echo hello > /tmp/output.txt
+          sleep 300
+
+      volumes:
+      - name: my-vol
+        persistentVolumeClaim:
+          claimName: local-pvc

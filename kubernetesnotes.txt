@@ -171,4 +171,21 @@ DaemonSet -- To run a copy of a pod on each node created. whenever a new node cr
 StaticPod -- Static pod is managed by kubelet on nodes. control plane not required to run static pods.
 			every static pod creates a mirror pod on the master plane to monitor but cannot be managed.
 
---kubernetes.io/os=linux
+storage:
+volumes: volumes help to store data outside of the container. data replication happens in the realtime.
+Persistent volumes: PV is a bit more advanced than the volumes. PV allows to treat volume as a resource and 
+					can be consumed in using pods.
+pod --> Persistent volume claim --> Persistent volumes --> external storage
+volume can be made on: 
+	NFS
+	cloud storage
+	Configmaps & Secrets
+	File system on node
+volumes in pod can be defined in two ways:
+	hostPath & emptyDir
+emptyDir: multiple containers can read and write same empty vol, it will cease to exist once pod is removed.
+
+Persistent volume: storage as a resource. PV uses attributes to describe underlying storage resources.
+PV can be created as a kind.
+Flow of PVC:
+Pod --> Persistanct Volume --> Persistanct Volume Claim --> Storage Class --> Storage

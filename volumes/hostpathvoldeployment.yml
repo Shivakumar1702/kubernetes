@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-hostpath
+spec:
+  selector:
+    matchLabels:
+      app: nginx-deployment-hostpath
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment-hostpath
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/os
+                    operator: In
+                    values:
+                    - linux
+      containers:
+      - name: nginx-deployment-hostpath
+        image: nginx:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: '100Mi'
+            cpu: "400m"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: test-vol
+          mountPath: /usr/share/nginx/html
+
+      volumes:
+      - name: test-vol
+        hostPath:
+          path: /tmp
