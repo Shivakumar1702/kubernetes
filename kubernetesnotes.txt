@@ -189,3 +189,8 @@ Persistent volume: storage as a resource. PV uses attributes to describe underly
 PV can be created as a kind.
 Flow of PVC:
 Pod --> Persistanct Volume --> Persistanct Volume Claim --> Storage Class --> Storage
+
+Kubernetes packaging manager(HELM):
+Helm is a package manager which works on top of kubernetes. helps in microservice management.
+Helm helps is defining, installing and upgrading the application on the kubernetes.
+Helm is the package manager, charts are available on artifacthub.io (default) and bitnami charts.
