@@ -1,0 +1,5 @@
+auth:
+  database: "appdatabase1"
+  password: "devpass"
+  username: "dev1"
+  rootPassword: "rootpass123"

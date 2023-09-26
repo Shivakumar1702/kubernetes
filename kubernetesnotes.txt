@@ -194,3 +194,31 @@ Kubernetes packaging manager(HELM):
 Helm is a package manager which works on top of kubernetes. helps in microservice management.
 Helm helps is defining, installing and upgrading the application on the kubernetes.
 Helm is the package manager, charts are available on artifacthub.io (default) and bitnami charts.
+Helm chart contains all the resource definition necessary to run a application.
+repository is a place to store the charts.
+Release: Instance of chart running. whenever chart is installed release is created.
+
+to add a repo - helm repo add bitnami https://charts.bitnami.com/bitnami
+to search in repo - helm search repo mysql
+to search in hub - helm search hub mysql
+to install a chart - helm install my-release bitnami/redis
+to get the chart deployment status - helm status <deployment name>
+
+helm install - loads charts and dependencies, pass values to yamls, generate yamls, parse yaml to kube objects
+				and validate.
+helm install maria bitnami/mariadb --dry-run
+helm get values maria
+helm get values maria --revision 1
+helm get values maria --revision 2
+helm get values maria --revision 3
+helm get manifest maria
+helm get manifest maria --revision 2
+helm history maria
+helm rollback maria <release no to roll back to>
+helm install mysql bitnami/mysql --wait
+helm install mysql bitnami/mysql --automic
+
+To create a custom chart - helm create my-chart
+to install the custom chart - helm install my-chart
+to package the custom chart - helm package my-chart
+to validate a chart - helm lint my-chart
