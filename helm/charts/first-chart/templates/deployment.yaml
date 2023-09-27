@@ -1,9 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
+{{ "We are learing" }} {{"HELM"}}
+{{ .Values.somevalues.address | upper  | nindent 2 }}
+{{ .Values.somevalues.addresscap | lower | nindent 4 }}
+{{ .Values.somevalues.email | default "this is null" | upper | nindent 6  }}
+
+{{- if .Values.value.test }}
+something: {{ "this is true" }}
+{{- else }}
+something: {{ "this is else block" }}
+{{- end }}
+
+{{- with .Values.myteam.name }}
+teams:
+  {{- toYaml . | nindent }}
+{{- end }}
+
 metadata:
   name: {{ include "first-chart.fullname" . }}
   labels:
     {{- include "first-chart.labels" . | nindent 4 }}
+    name: {{ .Values.createdby.name }}
+    version: {{ .Chart.AppVersion }}
+  
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}

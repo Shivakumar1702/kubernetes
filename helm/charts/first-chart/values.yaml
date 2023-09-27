@@ -4,6 +4,23 @@
 
 replicaCount: 2
 
+myteam:
+  name:
+  - "shiva"
+  - "kumar"
+  - "allam"
+
+value:
+  test: false
+
+createdby:
+  name: "shiva"
+
+somevalues:
+  address: "bommalaramaram"
+  addresscap: "BOMMALARAMARAM"
+  email:
+
 image:
   repository: nginx
   pullPolicy: IfNotPresent
