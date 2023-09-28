@@ -1,5 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
+
+{{ $myVar := true }}
+{{- if $myVar}}
+string:
+  {{"hi this is working"}}
+{{- else}}
+string:
+  {{"this is not ture"}}
+{{- end}}
+
 {{ "We are learing" }} {{"HELM"}}
 {{ .Values.somevalues.address | upper  | nindent 2 }}
 {{ .Values.somevalues.addresscap | lower | nindent 4 }}
