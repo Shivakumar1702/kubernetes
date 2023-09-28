@@ -222,3 +222,22 @@ To create a custom chart - helm create my-chart
 to install the custom chart - helm install my-chart
 to package the custom chart - helm package my-chart
 to validate a chart - helm lint my-chart
+
+GITOPS
+GITOPS uses git as single source of truth to deliver applications and infrastructure.
+changes can be done only on the git repo and gitops controller on k8s cluster will read the change and
+implement it on the cluster, resouces cannot be modified directly on the cluster.
+Popular gitops tools:
+argo cd
+flux
+jenkins x
+spinnaker
+Functionality of Argo CD -
+git <----takes the state of k8s from git---Augo CD----syncs the state on the kubernetes----> k8s
+
+Argo CD contains repo server which connects to git and gets the status of the git.
+Argo CD also contains application controller which connects to k8s to get the status of cluster.
+Argo CD compares the data from repo server and the application controller.
+Argo CD contains API server for the user to connect to the argo cd.
+Argo CD contains dex for integration to authentiation.
+Argo CD contains redis for caching.
