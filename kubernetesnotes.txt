@@ -104,6 +104,7 @@ Service can do loadbalancing, service discovery, expose application to external 
 Service are of 3 types:
 	clusterIp --> still application is only accessible inside the cluster.
 	nodeport --> allows the application to accessible out of the cluster by using the ip of the worker IP.
+					minikube needs tunnel to access nodeport: use command -  minikube service <service name> -n <namespace>
 	loadbalancer --> application can be accessible in the external world with the public load balancer IP.
 
 Ingress:
@@ -241,3 +242,9 @@ Argo CD compares the data from repo server and the application controller.
 Argo CD contains API server for the user to connect to the argo cd.
 Argo CD contains dex for integration to authentiation.
 Argo CD contains redis for caching.
+
+To install argo cd- 
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+edit argo-server svc to NodePort
+initial password ---> kubectl exec -n argocd argocd-server-64957744c9-zv72p -- argocd admin initial-password
