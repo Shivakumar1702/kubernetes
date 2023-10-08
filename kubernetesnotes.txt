@@ -243,8 +243,8 @@ Argo CD contains API server for the user to connect to the argo cd.
 Argo CD contains dex for integration to authentiation.
 Argo CD contains redis for caching.
 
-To install argo cd- 
+To install argo cd-
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-edit argo-server svc to NodePort
+edit argocd-server svc to NodePort
 initial password ---> kubectl exec -n argocd argocd-server-64957744c9-zv72p -- argocd admin initial-password
