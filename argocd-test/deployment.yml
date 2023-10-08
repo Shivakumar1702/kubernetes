@@ -12,7 +12,6 @@ spec:
       labels:
         app: nginx-deploy
     spec:
-      
       containers:
       - name: nginx-deploy
         image: nginx:latest
