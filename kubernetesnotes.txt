@@ -189,8 +189,7 @@ emptyDir: multiple containers can read and write same empty vol, it will cease t
 Persistent volume: storage as a resource. PV uses attributes to describe underlying storage resources.
 PV can be created as a kind.
 Flow of PVC:
-Pod --> Persistanct Volume --> Persistanct Volume Claim --> Storage Class --> Storage
-
+Pod --> PVC --> PV --> SC
 Kubernetes packaging manager(HELM):
 Helm is a package manager which works on top of kubernetes. helps in microservice management.
 Helm helps is defining, installing and upgrading the application on the kubernetes.
